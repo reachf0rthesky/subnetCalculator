@@ -1,0 +1,79 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Subnet Calculator";
+}
+
+<script>
+
+    document.getElementById("submitter").disabled = false;
+
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">Subnet Calculator</h1>
+
+    <form method="post">
+
+        <b>IP:</b>&ensp;&ensp;&ensp;<input type=text size="10" id="Byte1" asp-for="@Model.Byte1" />. <input type=text size="10" id="Byte2" asp-for="@Model.Byte2" />. <input type=text size="10" id="Byte3" asp-for="@Model.Byte3" />. <input type=text size="10" id="Byte4" asp-for="@Model.Byte4" />
+        &ensp;/ <input type=text size="4" id="SlashX" asp-for="@Model.SlashX" />
+        &ensp;&ensp;&ensp;<input type="submit" id=submitter value="submit" />
+        &ensp;&ensp;&ensp;<input type="submit" id=clear value="Clear" asp-page-handler="Clear" /><p></p>
+
+        @{
+            if(@Model.SubNetList != null) {
+                int i = 0;
+                string[] splitEntry = new string[6];
+                    <script>
+                        document.getElementById("Byte1").readOnly = true;
+                        document.getElementById("Byte2").readOnly = true;
+                        document.getElementById("Byte3").readOnly = true;
+                        document.getElementById("Byte4").readOnly = true;
+                        document.getElementById("SlashX").readOnly = true;
+                        document.getElementById("submitter").disabled = true;
+
+                    </script>
+                    <text>
+                        <div class=center>
+                            <table class="center" border="1">
+                                <tr>
+                                    <td>NetID&nbsp;</td>
+                                    <td>EH&nbsp;</td>
+                                    <td>LH&nbsp;&nbsp;</td>
+                                    <td>Broadcast&nbsp;</td>
+                                    <td>Subnet Ip&nbsp;</td>
+                                    <td>Subnet /x&nbsp;</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </text>
+
+                while(i < @Model.SubNetList.Count) {
+                    splitEntry = Model.SubNetList[i].Split(",");
+
+                        <text>
+                            <div class="center">
+                                <table>
+                                    <tr>
+                                        <td>@splitEntry[0]</td>
+                                        <td>@splitEntry[1]</td>
+                                        <td>@splitEntry[3]</td>
+                                        <td>@splitEntry[2]</td>
+                                        <td>@splitEntry[4]</td>
+                                        <td>@splitEntry[5]</td>
+                                        <td><input type="submit" value="Split" asp-page-handler="SplitButtonX" asp-route-id="@(i)" /></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </text>
+                    i++;
+                }
+            }
+
+
+        }
+    </form>
+
+</div>
