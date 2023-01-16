@@ -1,0 +1,33 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 80px;
+    background-color: lightblue;
+}
+
+td {
+    min-height: 137px;
+    max-height: 137px;
+    min-width: 137px;
+    max-width: 137px;
+}
+
+
+table td {
+    border: 1px solid #000;
+}
+
+
